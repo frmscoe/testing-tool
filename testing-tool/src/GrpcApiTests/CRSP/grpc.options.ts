@@ -8,9 +8,9 @@ import { join } from 'path';
 export const microserviceOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
-    package: 'tmsservice',
-    protoPath: join(__dirname, '../../../src/GrpcApiTests/transaction monitoring service/proto/TMS.proto'),
-    url: '0.0.0.0:50051',
+    package: 'org.apache.nifi.processors.grpc',
+    protoPath: join(__dirname, '../../../src/GrpcApiTests/Typology Processor/proto/app.proto'),
+    url: 'off-channel-router-setup-processor.frm-meshed:50051',
     credentials: credentials.createInsecure()
   },
 };

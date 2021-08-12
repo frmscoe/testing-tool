@@ -1,14 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CDPModel } from './Models/CDP.model';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
-import { json } from 'body-parser';
 import { RequestResponse } from "../../Models/requestResponse";
 import { RequestModel } from 'src/Models/RequestModel';
 import { CompareObjectsHelper } from 'src/Helpers/CompareObjects';
 @Injectable()
-export class CDPService {
+export class JsonCompareService {
   constructor(private httpService: HttpService) { }
   getWithParam(param: any) {
     console.log(param);
@@ -19,15 +17,11 @@ export class CDPService {
     const requestResponse: RequestResponse = new RequestResponse();
 
     let request: AxiosResponse;
-
     try {
-      request = await firstValueFrom(
-        this.httpService.post(sample.Url, sample.postData),
-      );
+      request = await firstValueFrom(this.httpService.post(sample.Url, sample.postData));
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
-    }
-
+    };
     if (JSON.stringify(CompareObjectsHelper.difference(sample.ExpectedResultData, request.data, sample.IgnoreFields)) !== "{}") {
       requestResponse.ResponseMessage =
       {

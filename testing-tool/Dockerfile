@@ -17,8 +17,8 @@ ENV port=3000
 ENV apmLogging=true
 ENV apmServiceName="Testing Tool"
 # TODO remove on commit 
-ENV apmSecretToken=""
-ENV apmURL=""
+ENV apmSecretToken=" "
+ENV apmURL=" "
 
 
 CMD ["npm", "run", "start:prod"]

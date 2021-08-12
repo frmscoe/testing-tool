@@ -1,14 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CRModel } from './Models/CR.model';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
-import { json } from 'body-parser';
 import { RequestResponse } from "../../Models/requestResponse";
 import { RequestModel } from 'src/Models/RequestModel';
-import { CompareObjectsHelper } from 'src/Helpers/CompareObjects';
 @Injectable()
-export class CRService {
+export class StringCompareService {
   constructor(private httpService: HttpService) { }
   getWithParam(param: any) {
     console.log(param);
@@ -19,21 +16,16 @@ export class CRService {
     const requestResponse: RequestResponse = new RequestResponse();
 
     let request: AxiosResponse;
-
     try {
-      request = await firstValueFrom(
-        this.httpService.post(sample.Url, sample.postData),
-      );
+      request = await firstValueFrom(this.httpService.post(sample.Url, sample.postData));
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
-    }
-
-
-    if (JSON.stringify(CompareObjectsHelper.difference(sample.ExpectedResultData, request.data, sample.IgnoreFields)) !== "{}") {
+    };
+    if (sample.ExpectedResultData != request.data) {
       requestResponse.ResponseMessage =
       {
         message: 'Failed Matches At ',
-        Result: CompareObjectsHelper.difference(sample.ExpectedResultData, request.data, sample.IgnoreFields)
+        Result: "Match Failed At " + sample.ExpectedResultData + " || " + request.data
       };
       requestResponse.httpStatus = HttpStatus.NOT_ACCEPTABLE;
       throw new HttpException(requestResponse, HttpStatus.NOT_ACCEPTABLE);
