@@ -30,6 +30,7 @@ export class CRSP implements OnModuleInit {
   async SendCRSPRequest(@Body() data) {
     const requestResponse: RequestResponse = new RequestResponse();
 
+    
     let flow: FlowFileRequest = new FlowFileRequest();
     flow.id = data.postData.id;
     flow.attributes = data.postData.attributes
@@ -48,19 +49,28 @@ export class CRSP implements OnModuleInit {
       return json;
     }
 
-    if (JSON.stringify(data.ExpectedResultData) !== JSON.stringify(response)) {
+
+
+
+
+
+    if (JSON.stringify(CompareObjectsHelper.difference(data.ExpectedResultData, response, data.IgnoreFields)) !== "{}") {
       requestResponse.ResponseMessage =
       {
         message: 'Failed Matches At ',
-        Result: response
+        Result: 'expected data ' +
+          data.ExpectedResultData +
+          ' || received ' +
+          JSON.stringify(CompareObjectsHelper.difference(data.ExpectedResultData, response, data.IgnoreFields))
       };
+
       requestResponse.httpStatus = HttpStatus.NOT_ACCEPTABLE;
       throw new HttpException(requestResponse, HttpStatus.NOT_ACCEPTABLE);
-    } else {  
+    } else {
       requestResponse.ResponseMessage = 'expected data match received data';
       requestResponse.httpStatus = HttpStatus.OK;
-    } 
-    return requestResponse; 
+    }
+    return requestResponse;
   }
 }
 export class FlowFileRequest {
