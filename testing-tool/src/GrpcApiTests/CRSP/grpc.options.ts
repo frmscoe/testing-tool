@@ -1,9 +1,9 @@
- 
+
 import { ClientOptions, Transport } from '@nestjs/microservices';
 
 import { credentials } from 'grpc';
 import { join } from 'path';
-
+//TODO check between local and deployed env 
 // Same options object used by microservice server
 export const microserviceOptions: ClientOptions = {
   transport: Transport.GRPC,
@@ -14,4 +14,3 @@ export const microserviceOptions: ClientOptions = {
     credentials: credentials.createInsecure()
   },
 };
-

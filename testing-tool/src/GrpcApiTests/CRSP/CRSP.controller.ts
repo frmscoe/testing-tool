@@ -36,7 +36,7 @@ export class CRSP implements OnModuleInit {
     flow.attributes = data.postData.attributes
     flow.content = data.postData.content;
     let response: Observable<nifiResponse>;
-
+//TODO remove unnesasary .catch
     try {
       response =
         await firstValueFrom(this.grpcService.send(flow)).catch(ol => {
@@ -47,12 +47,7 @@ export class CRSP implements OnModuleInit {
       const CircularJSON = require('circular-json');
       let json = CircularJSON.stringify(error.response);
       return json;
-    }
-
-
-
-
-
+    } 
 
     if (JSON.stringify(CompareObjectsHelper.difference(data.ExpectedResultData, response, data.IgnoreFields)) !== "{}") {
       requestResponse.ResponseMessage =

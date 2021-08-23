@@ -17,11 +17,14 @@ export class JsonCompareService {
     const requestResponse: RequestResponse = new RequestResponse();
 
     let request: AxiosResponse;
+
     try {
-      request = await firstValueFrom(this.httpService.post(sample.Url, sample.postData));
+      request = await firstValueFrom(this.httpService.post(sample.Url, sample.postData, sample.AttachHeaders));
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
     };
+    console.log(JSON.stringify(request.data))
+
     if (JSON.stringify(CompareObjectsHelper.difference(sample.ExpectedResultData, request.data, sample.IgnoreFields)) !== "{}") {
       requestResponse.ResponseMessage =
       {

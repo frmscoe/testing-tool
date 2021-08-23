@@ -4,5 +4,8 @@ export class RequestModel {
         public postData: string,
         public ExpectedResultData: string,
         public IgnoreFields: string[],
+        public AttachHeaders: {
+
+        },
     ) { }
 }
