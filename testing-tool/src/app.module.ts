@@ -9,12 +9,14 @@ import { StringComparemodule } from './Rest Api Tests/String Compare/StringCompa
 
 import { CRSPModule } from './GrpcApiTests/CRSP/CRSP.module';
 import { nifiToolModule } from './GrpcApiTests/Typology Processor/nifiTool.module';
+import { rule003Module } from './GrpcApiTests/rule-003/rule003.module';
 @Module({
   imports: [
     JsonComparemodule,
     StringComparemodule,
     CRSPModule,
-    nifiToolModule
+    nifiToolModule,
+    rule003Module
   ],
   controllers: [AppController], //handles requests and sends responses
   providers: [AppService], //extra classes or services
