@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 //entry point
 
 import { NestFactory } from '@nestjs/core';

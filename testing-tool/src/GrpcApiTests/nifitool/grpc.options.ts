@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
  
 import { ClientOptions, Transport } from '@nestjs/microservices';
 

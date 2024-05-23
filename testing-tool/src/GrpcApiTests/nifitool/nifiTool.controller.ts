@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { Controller, Logger, Post, Body, OnModuleInit, Get, HttpStatus } from '@nestjs/common';
 import { IGrpcService } from './grpc.interface';
 import { Client, ClientGrpc, GrpcMethod } from '@nestjs/microservices';

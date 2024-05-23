@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { get, request } from 'http';
 import { CRModel } from './Models/CR.model';

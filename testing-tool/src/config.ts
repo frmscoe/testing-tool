@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 
 import { IConfig } from './interfaces/IConfig';
 export const configuration: IConfig = {
