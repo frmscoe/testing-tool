@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { chanelOrchestratorTestModel } from './Models/chanelOrchestratorTest.model';
 import { chanelOrchestratorTestService } from './chanelOrchestratorTest.service';

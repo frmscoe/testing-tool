@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { Module } from '@nestjs/common';
 import { CRController } from './CR.controller';
 import { CRService } from './CR.service';

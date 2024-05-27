@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CDPModel } from './Models/CDP.model';
 import { HttpService } from '@nestjs/axios';

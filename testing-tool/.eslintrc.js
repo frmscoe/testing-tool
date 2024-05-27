@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {

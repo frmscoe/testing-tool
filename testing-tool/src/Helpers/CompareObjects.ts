@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: Apache-2.0
+
  
 export class CompareObjectsHelper {
     static difference(BaseObject, CompareObject, IgnoreFields: string[]) {
